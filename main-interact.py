@@ -1,5 +1,7 @@
 import argparse
+from tqdm import tqdm
 import pdb
+import json
 import random
 import torch
 import numpy as np
@@ -18,19 +20,19 @@ def set_randomSeed(args):
         torch.backends.cudnn.deterministic = True
 
 TEST_QUESTIONS = [    
-    'Do both films The Poet (2007 Film) and Without Her (Film) have the directors from the same country?',  # 2wikimultiHop
-    'Explain what dark matter and dark energy are. How do modern cosmologists detect and study the properties of these mysterious substances, and what impacts do they have on the evolution of the universe?',  # sampled from ChatGPT
-    "Who has the highest goals in men's world international football?",  # ASQA
-    'An astronomer observes that a planet rotates faster after a meteorite impact. Which is the most likely effect of this increase in rotation?',  # arc challenge
-    'Tell me a bio of Jessie Mae Brown Beavers.',  # factscore
-    'Blackfin is a family of processors developed by the company that is headquartered in what city?',  # hootpotQA
-    'As of 2016, about what percentage of adults aged 18 years or older were overweight?',  # mmlu
-    "What is Henry Feilden's occupation?",  # PopQA
-    'A mother revealed to her child in a letter after her death that she had just one eye because she had donated the other to him.',  # PubHealth
-    'can you use Microsoft Office without internet?',  # StrategyQA
-    'In Buddhism, what is the state of blissful repose or absolute existence by someone relieved of the necessity of rebirth?',  # TrivaQA
-    'The Golden Calf Occupation Award is one of 16 awards given to film occupations such as cameraman and music composer.',  # fever
-    'How many storeys are in the castle that David Gregory inherited?'  # 2hotpot question
+    """You are a Python code generator, only return the import and python function. Input will be an very detailed description of task, output will be the code.\nThe input will be from command line, and the output will be printed to the console as well. Your result will be solely a function named solve(), and do not call this function in your code.\nMake sure the code is free of bug and can pass the test cases provided. You can use any library you want. The test cases are provided in the code. Do not call the solve() function in your code. \nProgramming Problem: A. Line Trip\nThere is a road, which can be represented as a number line. You are located in the point $$$0$$$ of the number line, and you want to travel from the point $$$0$$$ to the point $$$x$$$, and back to the point $$$0$$$.\nYou travel by car, which spends $$$1$$$ liter of gasoline per $$$1$$$ unit of distance travelled. When you start at the point $$$0$$$, your car is fully fueled (its gas tank contains the maximum possible amount of fuel).\nThere are $$$n$$$ gas stations, located in points $$$a_1, a_2, \\dots, a_n$$$. When you arrive at a gas station, you fully refuel your car.\nNote that you can refuel only at gas stations, and there are no gas stations in points $$$0$$$ and $$$x$$$\n.\nYou have to calculate the minimum possible volume of the gas tank in your car (in liters) that will allow you to travel from the point $$$0$$$ to the point $$$x$$$ and back to the point $$$0$$$.\nInput\nThe first line contains one integer $$$t$$$ ($$$1 \\le t \\le 1000$$$) \u2014 the number of test cases.\nEach test case consists of two lines:\nthe first line contains two integers $$$n$$$ and $$$x$$$ ($$$1 \\le n \\le 50$$$; $$$2 \\le x \\le 100$$$);\nthe second line contains $$$n$$$ integers $$$a_1, a_2, \\dots, a_n$$$ ($$$0 < a_1 < a_2 < \\dots < a_n < x$$$).\nOutput\nFor each test case, print one integer \u2014 the minimum possible volume of the gas tank in your car that will allow you to travel from the point $$$0$$$ to the point $$$x$$$ and back.\nExample\nInput\n3\n3 7\n1 2 5\n3 6\n1 2 5\n1 10\n7\nOutput\n4\n3\n7\nNote\nIn the first test case of the example, if the car has a gas tank of $$$4$$$ liters, you can travel to $$$x$$$ and back as follows:\ntravel to the point $$$1$$$, then your car's gas tank contains $$$3$$$ liters of fuel;\nrefuel at the point $$$1$$$, then your car's gas tank contains $$$4$$$ liters of fuel;\ntravel to the point $$$2$$$, then your car's gas tank contains $$$3$$$ liters of fuel;\nrefuel at the point $$$2$$$, then your car's gas tank contains $$$4$$$ liters of fuel;\ntravel to the point $$$5$$$, then your car's gas tank contains $$$1$$$ liter of fuel;\nrefuel at the point $$$5$$$, then your car's gas tank contains $$$4$$$ liters of fuel;\ntravel to the point $$$7$$$, then your car's gas tank contains $$$2$$$ liters of fuel;\ntravel to the point $$$5$$$, then your car's gas tank contains $$$0$$$ liters of fuel;\nrefuel at the point $$$5$$$, then your car's gas tank contains $$$4$$$ liters of fuel;\ntravel to the point $$$2$$$, then your car's gas tank contains $$$1$$$ liter of fuel;\nrefuel at the point $$$2$$$, then your car's gas tank contains $$$4$$$ liters of fuel;\ntravel to the point $$$1$$$, then your car's gas tank contains $$$3$$$ liters of fuel;\nrefuel at the point $$$1$$$, then your car's gas tank contains $$$4$$$ liters of fuel;\ntravel to the point $$$0$$$, then your car's gas tank contains $$$3$$$ liters of fuel."""  # 2wikimultiHop
+#    'Explain what dark matter and dark energy are. How do modern cosmologists detect and study the properties of these mysterious substances, and what impacts do they have on the evolution of the universe?',  # sampled from ChatGPT
+#   "Who has the highest goals in men's world international football?",  # ASQA
+#   'An astronomer observes that a planet rotates faster after a meteorite impact. Which is the most likely effect of this increase in rotation?',  # arc challenge
+#   'Tell me a bio of Jessie Mae Brown Beavers.',  # factscore
+#    'Blackfin is a family of processors developed by the company that is headquartered in what city?',  # hootpotQA
+#   'As of 2016, about what percentage of adults aged 18 years or older were overweight?',  # mmlu
+#   "What is Henry Feilden's occupation?",  # PopQA
+#   'A mother revealed to her child in a letter after her death that she had just one eye because she had donated the other to him.',  # PubHealth
+#   'can you use Microsoft Office without internet?',  # StrategyQA
+#    'In Buddhism, what is the state of blissful repose or absolute existence by someone relieved of the necessity of rebirth?',  # TrivaQA
+#    'The Golden Calf Occupation Award is one of 16 awards given to film occupations such as cameraman and music composer.',  # fever
+ #   'How many storeys are in the castle that David Gregory inherited?'  # 2hotpot question
 ]
 
 def get_config():
@@ -132,8 +134,24 @@ if __name__=='__main__':
     args = get_config()
     set_randomSeed(args)
     rag = get_algorithm(args)
-    for query in TEST_QUESTIONS:
-        inference_result, generation_track = rag.inference(query, mode = 'interact')# sampled from ChatGPT
-        print(f'query:{query}')
-        print(f'rag response:{inference_result}')
-        # pprint(generation_track)
+    with open('naiveraginf.json','r') as file:
+        dataneo=file.read()
+    dataneo=json.loads(dataneo)
+    
+    for idx,i in enumerate(tqdm(dataneo)):
+        if(idx<150):
+            continue;
+        #if(idx==150):
+        #    break
+        temp=[]
+        qs=[]
+        for query in i["problem_statements"]:
+            fullquery,inference_result, generation_track = rag.inference(query, mode = 'interact')# sampled from ChatGPT
+            # print(f'query:{query}')
+            # print(f'rag response:{inference_result}')
+            temp.append(inference_result)
+            qs.append(fullquery)
+        i["outputs"]=temp
+        i["full_queries"]=qs
+    with open("naiveraginf.json", "w") as dola_file:
+        json.dump(dataneo, dola_file, indent=4)

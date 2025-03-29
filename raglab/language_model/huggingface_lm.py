@@ -48,15 +48,16 @@ class HF_Model(BaseLM):
                     pad_token_id = self.tokenizer.eos_token_id
                 )
             else:
-                # greedy 
+                print(prompt) 
                 hf_outputs = self.llm.generate(
                     input_ids=input_ids,
                     do_sample=False,
-                    max_length=instruction_len + self.generate_maxlength,
+                   # max_length=instruction_len + self.generate_maxlength,
                     eos_token_id = [self.tokenizer.eos_token_id, self.tokenizer.convert_tokens_to_ids("<|eot_id|>")],
                     output_scores=True,
                     return_dict_in_generate=True,
-                    pad_token_id = self.tokenizer.eos_token_id
+                    max_new_tokens=800,
+		    pad_token_id = self.tokenizer.eos_token_id
                 )
             Outputs = self.Outputs()
             Outputs.tokens_ids = hf_outputs.sequences[0][instruction_len:].tolist()

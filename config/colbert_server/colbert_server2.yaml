@@ -1,0 +1,5 @@
+port: 8894
+
+index_dbPath: /scratch/users/ntu/mohor001/raglab_final_embedding/datasets_github
+text_dbPath: /scratch/users/ntu/mohor001/raglab_final/datasets/github_repos_python_colbert.tsv
+retriever_modelPath: /home/users/ntu/mohor001/col/colbertv2.0

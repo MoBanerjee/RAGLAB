@@ -1,0 +1,5 @@
+port: 8893
+
+index_dbPath: /scratch/users/ntu/mohor001/raglab_final_embedding/datasets_OT
+text_dbPath: /scratch/users/ntu/mohor001/raglab_final/datasets/online_tutorials_colbert.tsv
+retriever_modelPath: /home/users/ntu/mohor001/col/colbertv2.0

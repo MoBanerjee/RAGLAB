@@ -9,9 +9,9 @@ from colbert.infra import Run, RunConfig, ColBERTConfig
 import pudb
 if __name__=='__main__':
     checkpoint = "/home/users/ntu/mohor001/RAGLAB_Project/RAGLAB/RAGLAB/model/retriever/colbertv2.0"
-    index_dbPath = '/scratch/users/ntu/mohor001/raglab_final_embedding/datasets_github'
+    index_dbPath = '/scratch/users/ntu/mohor001/raglab_final_embedding/datasets_PS'
     dataset = os.path.basename(index_dbPath)
-    collection = '/scratch/users/ntu/mohor001/raglab_final/datasets/github_repos_python_colbert.tsv'
+    collection = '/scratch/users/ntu/mohor001/raglab_final/datasets/programming_solutions_colbert.tsv'
     collection = Collection(path=collection)
     f'Loaded {len(collection):,} passages'
     nbits = 2   # encode each dimension with 2 bits

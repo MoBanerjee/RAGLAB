@@ -9,15 +9,15 @@ END = '\033[0m'
 class ColbertApi(Retrieve):
     def __init__(self, args):
         self.n_docs = args.n_docs
-        self.url_format = "http://localhost:8893/api/search?query={query}&k={k}"
+        self.url_format = "http://localhost:{portnum}/api/search?query={query}&k={k}"
 
     def setup_retrieve(self):
         # setup process done when setup ColbertServer
         pass
 
-    def search(self,query:str)-> dict[int,dict]:
+    def search(self,query:str,portnum)-> dict[int,dict]:
         start_time = time.time()
-        url = self.url_format.format_map({'query':query, 'k':self.n_docs})
+        url = self.url_format.format_map({'portnum':portnum,'query':query, 'k':self.n_docs})
         try:
             response = requests.get(url).json()
             passages = {int(k):v for k,v in response.items()}

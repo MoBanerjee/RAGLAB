@@ -5,12 +5,7 @@ import time
 from typing import Optional, Any
 import logging
 import random
-from transformers import AutoTokenizer, AutoModelForCausalLM, set_seed
-import pandas as pd
-import numpy as np
-import torch
-#from accelerate.test_utils.testing import get_backend
-from transformers import BitsAndBytesConfig
+
 from raglab.dataset.utils import get_dataset # load datasets
 from raglab.retrieval import ContrieverRrtieve, ColbertRetrieve, ColbertApi
 from raglab.language_model import OpenaiModel, HF_Model, HF_VLLM, Lora_Model
@@ -20,7 +15,7 @@ import pdb
 RED = '\033[91m'
 END = '\033[0m'
 GREEN = '\033[92m'
-quantization_config = BitsAndBytesConfig(load_in_8bit=True)
+
 class NaiveRag:
     def __init__(self, args):
         self.args = args
@@ -30,14 +25,15 @@ class NaiveRag:
         # output file name config
         self.config = args.config
         self.algorithm_name = args.algorithm_name
-        self.localmodel = AutoModelForCausalLM.from_pretrained("/home/users/ntu/mohor001/llama3.1",quantization_config=quantization_config, torch_dtype="auto")
-        self.tokenizer = AutoTokenizer.from_pretrained("/home/users/ntu/mohor001/llama3.1")
+        self.llm_path = args.llm_path
+        self.llm_name = args.llm_name
         # eval config
         self.task = args.task
         self.eval_datapath = args.eval_datapath
         self.output_dir = args.output_dir
-
-  
+        # llm config
+            #(other configs check raglab/language_model/*.py files)
+        self.llm_mode = args.llm_mode
         self.use_vllm = args.use_vllm
         # retrieval args
         self.n_docs = args.n_docs
@@ -47,7 +43,7 @@ class NaiveRag:
         # setup model and database 
         # if args.gpu_ids is not None:
         #     self.gpu_manager.allocate_gpu()
-        
+        self.llm = self.steup_llm(args)
         # steup retrieval
         if self.realtime_retrieval:
             self.retrieval = self.setup_retrieval(args) # retrieval model
@@ -64,9 +60,9 @@ class NaiveRag:
     def inference(self, query: Optional[str] = None, mode = 'interact'):
         assert mode in ['interact', 'evaluation']
         if 'interact' == mode:
-            #self.print_fn(f"Interactive mode: query = {query}")
-            fullq,final_answer, generation_track = self.infer(query)
-            return fullq, final_answer, generation_track
+            self.print_fn(f"Interactive mode: query = {query}")
+            final_answer, generation_track = self.infer(query)
+            return final_answer, generation_track
         elif 'evaluation' == mode:
             self.EvalData = get_dataset(self) # here we input self because dataset classed need self.print_fn
             self.eval_dataset = self.EvalData.load_dataset()
@@ -119,21 +115,16 @@ class NaiveRag:
             target_instruction = self.find_algorithm_instruction('Naive_rag', self.task)
 
             input = target_instruction.format_map({'passages': collated_passages, 'query': query})
-            
+            print(input)
             #generation_track['cited passages'] = passages
         else:
             target_instruction = self.find_algorithm_instruction('Naive_rag-without_retrieval', self.task)
             input = target_instruction.format_map({'query': query})
-        device='cuda'
-        chat = [
-        {"role": "user", "content": input},
-    ]
-        prompt = self.tokenizer.apply_chat_template(chat, tokenize=False, add_generation_prompt=True)
-        inputs = self.tokenizer(prompt, return_tensors="pt").to(device)
-        output_sample = self.localmodel.generate(**inputs, do_sample=False,max_new_tokens=800)
-        answer=(self.tokenizer.batch_decode(output_sample[:, inputs.input_ids.shape[-1]:], skip_special_tokens=True))[0]
-        generation_track['final answer'] = answer
-        return input,answer, generation_track
+        outputs_list = self.llm.generate(input) # llm.generate() -> list[BaseOutputs] so you have to get the text from BaseOutputs.text
+        Outputs = outputs_list[0]
+        outputs_text = Outputs.text
+        generation_track['final answer'] = outputs_text
+        return outputs_text, generation_track
 
     def steup_llm(self, args):
         if self.llm_mode == 'HF_Model':

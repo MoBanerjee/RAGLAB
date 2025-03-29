@@ -1,21 +1,27 @@
 use_seed: True
 seed: 633
-num_gpu: 1
+num_gpu: 2
 # eval config
 algorithm_name: naive_rag
 task: ''
 # llm config
 llm_mode: HF_Model
-llm_path: ./model/Llama3-8B-baseline
-
+llm_path: ./RAGLAB/model/generator/Llama3-8B-baseline
+#llm_path: meta-llama/Llama-3.1-8B-Instruct
+use_chat_template: True
 use_vllm: True
-temperature: 0.0
+temperature: 0.7
 top_p: 1.0
 generation_stop: ''
-generate_maxlength: 300
-# retrieval config
+generate_maxlength: 800
+#retrieval config
 realtime_retrieval: True
 retrieval_name: colbert_api
+#index_dbPath: /scratch/users/ntu/mohor001/raglab_final_embedding/datasets_PS
+#text_dbPath: /scratch/users/ntu/mohor001/raglab_final/datasets/programming_solutions_colbert.tsv
+retriever_modelPath: /home/users/ntu/mohor001/col/colbertv2.0
+nbits: 2
 # max length should bigger than the length of input_ids
-n_docs: 10
+n_docs: 3
 passages_max_length: -1
+doc_maxlen: 300

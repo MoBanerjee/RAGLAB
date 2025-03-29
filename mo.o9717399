@@ -1,0 +1,223 @@
+The token has not been saved to the git credentials helper. Pass `add_to_git_credential=True` in this function directly or `--add-to-git-credential` if using via `huggingface-cli` if you want to set the git credential as well.
+Traceback (most recent call last):
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/connectionpool.py", line 491, in _make_request
+    raise new_e
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/connectionpool.py", line 467, in _make_request
+    self._validate_conn(conn)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/connectionpool.py", line 1096, in _validate_conn
+    conn.connect()
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/connection.py", line 642, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/connection.py", line 782, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/util/ssl_.py", line 470, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/util/ssl_.py", line 514, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/ssl.py", line 501, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/ssl.py", line 1074, in _create
+    self.do_handshake()
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/ssl.py", line 1343, in do_handshake
+    self._sslobj.do_handshake()
+ConnectionResetError: [Errno 104] Connection reset by peer
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/requests/adapters.py", line 667, in send
+    resp = conn.urlopen(
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/connectionpool.py", line 844, in urlopen
+    retries = retries.increment(
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/util/retry.py", line 470, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/util/util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/connectionpool.py", line 491, in _make_request
+    raise new_e
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/connectionpool.py", line 467, in _make_request
+    self._validate_conn(conn)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/connectionpool.py", line 1096, in _validate_conn
+    conn.connect()
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/connection.py", line 642, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/connection.py", line 782, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/util/ssl_.py", line 470, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/util/ssl_.py", line 514, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/ssl.py", line 501, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/ssl.py", line 1074, in _create
+    self.do_handshake()
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/ssl.py", line 1343, in do_handshake
+    self._sslobj.do_handshake()
+urllib3.exceptions.ProtocolError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/bin/huggingface-cli", line 8, in <module>
+    sys.exit(main())
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/huggingface_hub/commands/huggingface_cli.py", line 57, in main
+    service.run()
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/huggingface_hub/commands/user.py", line 153, in run
+    login(
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/huggingface_hub/utils/_deprecation.py", line 101, in inner_f
+    return f(*args, **kwargs)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/huggingface_hub/utils/_deprecation.py", line 31, in inner_f
+    return f(*args, **kwargs)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/huggingface_hub/_login.py", line 126, in login
+    _login(token, add_to_git_credential=add_to_git_credential)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/huggingface_hub/_login.py", line 404, in _login
+    token_info = whoami(token)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/huggingface_hub/hf_api.py", line 1630, in whoami
+    r = get_session().get(
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/requests/sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/huggingface_hub/utils/_http.py", line 93, in send
+    return super().send(request, *args, **kwargs)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/requests/adapters.py", line 682, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: (ProtocolError('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer')), '(Request ID: a10f8a05-b67c-4101-9286-1510f5b65cb4)')
+Traceback (most recent call last):
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/connectionpool.py", line 491, in _make_request
+    raise new_e
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/connectionpool.py", line 467, in _make_request
+    self._validate_conn(conn)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/connectionpool.py", line 1096, in _validate_conn
+    conn.connect()
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/connection.py", line 642, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/connection.py", line 782, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/util/ssl_.py", line 470, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/util/ssl_.py", line 514, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/ssl.py", line 501, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/ssl.py", line 1074, in _create
+    self.do_handshake()
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/ssl.py", line 1343, in do_handshake
+    self._sslobj.do_handshake()
+ConnectionResetError: [Errno 104] Connection reset by peer
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/requests/adapters.py", line 667, in send
+    resp = conn.urlopen(
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/connectionpool.py", line 844, in urlopen
+    retries = retries.increment(
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/util/retry.py", line 470, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/util/util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/connectionpool.py", line 491, in _make_request
+    raise new_e
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/connectionpool.py", line 467, in _make_request
+    self._validate_conn(conn)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/connectionpool.py", line 1096, in _validate_conn
+    conn.connect()
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/connection.py", line 642, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/connection.py", line 782, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/util/ssl_.py", line 470, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/urllib3/util/ssl_.py", line 514, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/ssl.py", line 501, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/ssl.py", line 1074, in _create
+    self.do_handshake()
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/ssl.py", line 1343, in do_handshake
+    self._sslobj.do_handshake()
+urllib3.exceptions.ProtocolError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/huggingface_hub/_snapshot_download.py", line 155, in snapshot_download
+    repo_info = api.repo_info(repo_id=repo_id, repo_type=repo_type, revision=revision, token=token)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/huggingface_hub/hf_api.py", line 2704, in repo_info
+    return method(
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/huggingface_hub/hf_api.py", line 2488, in model_info
+    r = get_session().get(path, headers=headers, timeout=timeout, params=params)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/requests/sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/huggingface_hub/utils/_http.py", line 93, in send
+    return super().send(request, *args, **kwargs)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/requests/adapters.py", line 682, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: (ProtocolError('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer')), '(Request ID: 304f312e-3e12-4701-971d-93196ede5251)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/bin/huggingface-cli", line 8, in <module>
+    sys.exit(main())
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/huggingface_hub/commands/huggingface_cli.py", line 57, in main
+    service.run()
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/huggingface_hub/commands/download.py", line 153, in run
+    print(self._download())  # Print path to downloaded files
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/huggingface_hub/commands/download.py", line 187, in _download
+    return snapshot_download(
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/home/users/ntu/mohor001/.conda/envs/raglab/lib/python3.9/site-packages/huggingface_hub/_snapshot_download.py", line 235, in snapshot_download
+    raise LocalEntryNotFoundError(
+huggingface_hub.errors.LocalEntryNotFoundError: An error happened while trying to locate the files on the Hub and we cannot find the appropriate snapshot folder for the specified revision on the local disk. Please check your internet connection and try again.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			Resource Usage on 2025-03-12 23:31:34.475859:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	JobId: 9717399.pbs101
+	Project: personal-mohor001
+	Exit Status: 1
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	NCPUs: Requested(32), Used(32)
+	CPU Time Used: 00:00:01
+	Memory: Requested(220gb), Used(34272kb)
+	Vmem Used: 71132kb
+	Walltime: Requested(06:00:00), Used(00:00:08)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Execution Nodes Used: (x1000c0s6b0n1:ncpus=32:ngpus=2:mem=230686720kb)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	GPU Duration: 8.72secs
+	GPU Power Consumed: 0W
+	GPU Max GPU Memory Used: 0.0B
+	Memory Throughput Rate (Average): x1000c0s6b0n1:(gpu1:0%+gpu0:0%)
+	Memory Throughput Rate (Max): x1000c0s6b0n1:(gpu1:0%+gpu0:0%)
+	Memory Throughput Rate (Min): x1000c0s6b0n1:(gpu1:0%+gpu0:0%)
+	GPU SM Utilization (Average): x1000c0s6b0n1:(gpu1:0%+gpu0:0%)
+	GPU SM Utilization (Max): x1000c0s6b0n1:(gpu1:0%+gpu0:0%)
+	GPU SM Utilization (Min): x1000c0s6b0n1:(gpu1:0%+gpu0:0%)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Warning: All GPUs have a percentage of 0 utilisation.
+GPU application profile: Idle
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+

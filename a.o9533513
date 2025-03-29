@@ -1,0 +1,33 @@
+Error: Unable to initialize environment modules.
+/var/spool/pbs/mom_priv/jobs/9533513.pbs101.SC: line 9: module: command not found
+/var/spool/pbs/mom_priv/jobs/9533513.pbs101.SC: line 10: conda: command not found
+/var/spool/pbs/mom_priv/jobs/9533513.pbs101.SC: line 11: python: command not found
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			Resource Usage on 2025-02-24 21:06:01.531914:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	JobId: 9533513.pbs101
+	Project: personal-mohor001
+	Exit Status: 127
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	NCPUs: Requested(32), Used(32)
+	CPU Time Used: 00:00:00
+	Memory: Requested(220gb), Used(9680kb)
+	Vmem Used: 0kb
+	Walltime: Requested(06:00:00), Used(00:00:01)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Execution Nodes Used: (x1000c0s5b0n1:ncpus=32:ngpus=2:mem=230686720kb)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	GPU Duration: 3.16secs
+	GPU Power Consumed: 0W
+	GPU Max GPU Memory Used: 0.0B
+	Memory Throughput Rate (Average): x1000c0s5b0n1:(gpu0:0%+gpu2:0%)
+	Memory Throughput Rate (Max): x1000c0s5b0n1:(gpu0:0%+gpu2:0%)
+	Memory Throughput Rate (Min): x1000c0s5b0n1:(gpu0:0%+gpu2:0%)
+	GPU SM Utilization (Average): x1000c0s5b0n1:(gpu0:0%+gpu2:0%)
+	GPU SM Utilization (Max): x1000c0s5b0n1:(gpu0:0%+gpu2:0%)
+	GPU SM Utilization (Min): x1000c0s5b0n1:(gpu0:0%+gpu2:0%)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Warning: All GPUs have a percentage of 0 utilisation.
+GPU application profile: Idle
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+

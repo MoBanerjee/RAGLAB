@@ -14,7 +14,7 @@ class HF_VLLM(BaseLM):
         self.use_chat_template = args.use_chat_template
 
     def load_model(self):
-        self.llm = LLM(model=self.llm_path, tokenizer=self.llm_path, dtype=self.dtype)
+        self.llm = LLM(model=self.llm_path, tokenizer=self.llm_path, dtype=self.dtype,enforce_eager=True,max_logprobs=100000000)
         self.tokenizer = self.llm.get_tokenizer()
         vocab_size = self.tokenizer.vocab_size
         special_token_size = len(self.tokenizer.added_tokens_decoder)
@@ -65,7 +65,7 @@ class HF_VLLM(BaseLM):
             Outputs.tokens_num = len(Outputs.tokens_ids)
             # tokens_prob & tokens_logprob
             Outputs.tokens_logprob = [logprob[token_id] for token_id, logprob in zip(Outputs.tokens_ids, RequestOutput.outputs[0].logprobs)]
-            Outputs.tokens_prob = np.exp(Outputs.tokens_logprob).tolist()   
+            #Outputs.tokens_prob = np.exp(Outputs.tokens_logprob).tolist()   
             Outputs.logprobs = RequestOutput.outputs[0].logprobs
             outputs_list.append(Outputs)
         # --> end of for loop

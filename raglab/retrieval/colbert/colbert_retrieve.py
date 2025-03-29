@@ -50,4 +50,5 @@ class ColbertRetrieve(Retrieve):
                 passages[passage_rank] = {'id':passage_id,'title':title.strip(),'text': content.strip(), 'score':passage_score}
             else:
                 passages[passage_rank] = {'id':passage_id,'text': self.searcher.collection[passage_id], 'score':passage_score}
+        print(passages)
         return passages

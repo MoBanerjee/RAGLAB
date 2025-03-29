@@ -42,9 +42,9 @@ class ColbertServer:
                 self.searcher = Searcher(index = index_name)
         except:
             print(f'{RED}Warning!!! Your wiki database has issues. RagLab will enabe colbert to generate a vector database, which will take a long time. Please download the preprocessed wiki database from RagLab.{END}')
-            user_input = input(f"Enter 'yes' to process data with Colbert Embedding, or 'no' to exit: ")
+            user_input = "no"
             if user_input.lower() == "yes":
-                with Run().context(RunConfig(nranks = 1, experiment = self.index_dbPath)):  # nranks specifies the number of GPUs to use.
+                with Run().context(RunConfig(nranks = 1,rank=1, experiment = self.index_dbPath)):  # nranks specifies the number of GPUs to use.
                     config = ColBERTConfig(doc_maxlen = 300, nbits = 2, kmeans_niters = 4) # colbert default setting
                     indexer = Indexer(checkpoint = self.retriever_modelPath, config = config)
                     indexer.index(name = index_name, collection = collection, overwrite=True) # overwrite must in [True, False, 'reuse', 'resume', "force_silent_overwrite"] 
@@ -64,7 +64,7 @@ class ColbertServer:
 
     @lru_cache(maxsize=1000000)
     def api_search_query(self, query, k):
-        if k == None: k = 10
+        if k != None: print(k)
         k = min(int(k), 100) 
         ids = self.searcher.search(query, k)
         passages = {}
@@ -74,6 +74,7 @@ class ColbertServer:
                 passages[passage_rank] = {'id':passage_id,'title':title.strip(),'text': content.strip(), 'score':passage_score}
             else:
                 passages[passage_rank] = {'id':passage_id,'text': self.searcher.collection[passage_id], 'score':passage_score}
+        print(passages)
         return passages
 
 if __name__ == "__main__":
